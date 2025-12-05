@@ -89,6 +89,9 @@ THROTTLE_INTERVAL = 0
 #IP = 192.168.1.106
 #PORT = 8080
 #UUID = your-uuid
+#POWER_CALCULATE = True
+#POWER_INPUT_UUID = grid-import-uuid
+#POWER_OUTPUT_UUID = grid-export-uuid
 ## Per-powermeter throttling override (optional)
 #THROTTLE_INTERVAL = 1
 

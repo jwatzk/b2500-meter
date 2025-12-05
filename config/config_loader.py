@@ -240,6 +240,9 @@ def create_vzlogger_powermeter(
         config.get(section, "IP", fallback=""),
         config.get(section, "PORT", fallback=""),
         config.get(section, "UUID", fallback=""),
+        config.getboolean(section, "POWER_CALCULATE", fallback=False),
+        config.get(section, "POWER_INPUT_UUID", fallback=""),
+        config.get(section, "POWER_OUTPUT_UUID", fallback=""),
     )
 
 
