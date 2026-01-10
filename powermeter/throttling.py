@@ -1,6 +1,5 @@
 import time
 import threading
-import logging
 from typing import List, Optional
 from .base import Powermeter
 from config.logger import logger
