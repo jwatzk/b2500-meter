@@ -26,10 +26,20 @@ class VZLogger(Powermeter):
 
     def get_powermeter_watts(self):
         if not self.power_calculate:
-            return [int(self.get_json(self.uuid)["data"][0]["tuples"][0][1])]
+            try:
+                data = self.get_json(self.uuid)
+                value = data["data"][0]["tuples"][0][1]
+                return [int(value)]
+            except (KeyError, IndexError, ValueError) as e:
+                raise ValueError(f"Failed to parse power value from VZLogger response: {e}") from e
         else:
-            power_in = 0
-            power_out = 0
-            power_in = int(self.get_json(self.power_input_uuid)["data"][0]["tuples"][0][1])
-            power_out = int(self.get_json(self.power_output_uuid)["data"][0]["tuples"][0][1])
-            return [power_in - power_out]
+            try:
+                data_in = self.get_json(self.power_input_uuid)
+                power_in = int(data_in["data"][0]["tuples"][0][1])
+                
+                data_out = self.get_json(self.power_output_uuid)
+                power_out = int(data_out["data"][0]["tuples"][0][1])
+                
+                return [power_in - power_out]
+            except (KeyError, IndexError, ValueError) as e:
+                raise ValueError(f"Failed to parse power values from VZLogger response: {e}") from e
