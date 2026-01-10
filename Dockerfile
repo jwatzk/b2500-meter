@@ -16,10 +16,8 @@ EXPOSE 12345/tcp
 EXPOSE 12345/udp
 EXPOSE 52500/tcp
 
-HEALTHCHECK CMD python - <<'EOF' || exit 1 \
-import urllib.request \
-urllib.request.urlopen("http://127.0.0.1:52500/health", timeout=3) \
-EOF
+HEALTHCHECK --interval=30s --timeout=3s --retries=3 CMD \
+  python -c 'import urllib.request; urllib.request.urlopen("http://127.0.0.1:52500/health", timeout=3)'
 
 # Run the SmartMeter script when the container starts
 CMD ["python", "main.py", "--loglevel", "info"]
