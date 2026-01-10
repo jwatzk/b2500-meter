@@ -6,4 +6,4 @@ paho-mqtt==2.1.0
 ply==3.11
 pymodbus==3.6.8
 requests==2.32.3
-urllib3==2.2.2
+urllib3==2.6.3
