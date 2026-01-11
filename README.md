@@ -317,7 +317,12 @@ POWER_OUTPUT_ALIAS = sensor.power_out_1,sensor.power_out_2,sensor.power_out_3
 [VZLOGGER]
 IP = 192.168.1.106
 PORT = 8080
+# Use if vzlogger powermeter provides a single saldo power value
 UUID = your-uuid
+# Set to True if vzlogger meter provides separate power values for input/output
+POWER_CALCULATE = ""|True|False
+POWER_INPUT_UUID = grid-import-uuid
+POWER_OUTPUT_UUID = grid-export-uuid
 ```
 
 ### ESPHome
